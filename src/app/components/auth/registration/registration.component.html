@@ -1,0 +1,37 @@
+<div class="form-container">
+  <h2>Register</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name"> Name:</label>
+      <input type="text" formControlName="name" />
+      @if(registrationForm.get('name')?.invalid &&
+      registrationForm.get('name')?.touched){<small>Name is required</small>}
+      @if(registrationForm.controls.name.errors?.['minlength']){<small
+        >Name with at least 3 letter</small
+      >}
+    </div>
+    <br />
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email" />
+      @if(registrationForm.get('email')?.invalid &&
+      registrationForm.get('email')?.touched){<small>Email is required</small>}
+      @if(registrationForm.get('email')?.errors?.['email']){<small
+        >Invalid email address</small>}
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password" />
+      @if(registrationForm.get('password')?.invalid &&
+      registrationForm.get('password')?.touched){<small>Password is required</small>}
+      @if(registrationForm.get('email')?.errors?.['email']){<small
+        >Password is required.</small>}
+    </div>
+    <button
+      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded disabled:border-red-500"
+      type="Submit"
+      [disabled]="!registrationForm.valid"
+    >Register</button>
+  </form>
+</div>
+

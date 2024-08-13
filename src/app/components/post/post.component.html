@@ -1,0 +1,38 @@
+<!-- <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+  <label for="date">Select Date:</label>
+  <input id="date" formControlName="date" type="date" [max]="today.toISOString().split('T')[0]">
+  <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="images.length">
+  <div *ngFor="let image of images">
+    <h3>{{ image.caption }}</h3>
+    <img [src]="getImageUrl(image.image, image.date)" alt="{{ image.caption }}">
+  </div>
+</div> -->
+
+<div class="container">
+  <form [formGroup]="dateForm" (ngSubmit)="onSubmit()" class="date-form">
+    <label for="date" class="form-label">Select Date:</label>
+    <input
+      id="date"
+      formControlName="date"
+      type="date"
+      [max]="today.toISOString().split('T')[0]"
+      class="form-control"
+    />
+    <button type="submit" class="submit-button">Submit</button>
+  </form>
+
+  <div *ngIf="images.length" class="image-grid">
+    <div *ngFor="let image of images" class="image-tile">
+      <h3 class="image-date">{{ image.date }}</h3>
+      <img
+        [src]="getImageUrl(image.image, image.date)"
+        alt="{{ image.caption }}"
+        class="image"
+      />
+    </div>
+  </div>
+</div>
+

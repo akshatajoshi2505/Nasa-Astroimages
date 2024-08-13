@@ -1,0 +1,63 @@
+.image-of-the-day-container {
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  padding-bottom: 50px;
+}
+
+.image-of-the-day-container:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+.card-date, .card-copyright {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.card-explanation {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.card-action {
+  padding: 15px 20px;
+  background-color: #f7f7f7;
+  text-align: right;
+}
+
+.view-hd-button {
+  text-decoration: none;
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.view-hd-button:hover {
+  background-color: #0056b3;
+}

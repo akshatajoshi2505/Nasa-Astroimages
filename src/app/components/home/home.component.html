@@ -1,0 +1,14 @@
+<div class="card image-of-the-day-container" *ngIf="imageUrl">
+  <div class="card-image">
+    <img [src]="imageUrl" alt="{{ title }}" class="image-of-the-day"/>
+  </div>
+  <div class="card-content">
+    <h2 class="card-title">{{ title }}</h2>
+    <p class="card-date"><strong>Date:</strong> {{ date }}</p>
+    <p class="card-explanation">{{ explanation }}</p>
+    <p class="card-copyright" *ngIf="copyright"><strong>Copyright:</strong> {{ copyright }}</p>
+  </div>
+  <div class="card-action">
+    <a [href]="hdImageUrl" target="_blank" class="view-hd-button">View HD Image</a>
+  </div>
+</div>
