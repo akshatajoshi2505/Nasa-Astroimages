@@ -1,59 +1,36 @@
-
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  ReactiveFormsModule,
-  FormGroup,
-  FormControl,
-  Validators,
-} from '@angular/forms';
-import { AuthService, IAuth } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-type LoginType = {
-  id: number;
-  email: string;
-  password: string;
-};
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  standalone: true, // Make sure this is a standalone component
+  imports: [CommonModule, ReactiveFormsModule], // Import ReactiveFormsModule here
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
- // authToken: IAuth = { token: '' };
-
-  errorMessage: string = '';
-  constructor(private authService: AuthService, private router: Router) {}
-  ngOnInit(): void {}
-
-  //if more than one validators use array
+  // Define the form group and form controls with validation
   loginForm = new FormGroup({
-    email: new FormControl<string | null>('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.email,
-    ]),
-    password: new FormControl<string | null>(null, Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
   });
-  onSubmit() {
-    this.authService
-      .login(this.loginForm.value.email!, this.loginForm.value.password!)
-      .subscribe({
-        next: (token) => {
-          console.log(token);
-          // this.authToken = token;
-          // localStorage.setItem('authtoken', token.token);
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  onLogin(): void {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email!, password!).subscribe({
+        next: () => {
+          this.router.navigateByUrl('/');
         },
         error: (e) => {
-          console.log(e.error.errors);
-          this.errorMessage = e.error.errors;
-        },
-        complete: () => {
-          console.info('complete');
-        },
+          console.error(e);
+          // Handle error here
+        }
       });
+    }
   }
 }
-

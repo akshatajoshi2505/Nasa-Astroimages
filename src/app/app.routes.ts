@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AstronomicalSearchComponent } from './components/astronomical-search/astronomical-search.component'; // Import the new component
-
+import { authGuard } from '../app/guard/auth.guard';
 
 export const routes: Routes = [
   {
@@ -23,8 +23,8 @@ export const routes: Routes = [
     path: 'register',
     component: RegistrationComponent,
   },
-  { path: 'logout', component: LogoutComponent },
-  { path: 'earth-images', component: PostComponent },
+  { path: 'logout', component: LogoutComponent , canActivate: [authGuard] },
+  { path: 'earth-images', component: PostComponent},
   { path: 'astronomical-search', component: AstronomicalSearchComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
 
